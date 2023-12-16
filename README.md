@@ -1,27 +1,101 @@
 <center> <h1>HBNB - The Console</h1> </center>
 
-This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
+# AirBnB_clone_v2
+Project Title: Python-based Console for Object Management in AirBnB Clone
 
----
+Project Overview 🏠
 
-<center><h3>Repository Contents by Project Task</h3> </center>
+This initiative aims to develop a robust command-line interface (CLI) for managing objects within the data model of an AirBnB clone. The focus is on creating, modifying, and deleting objects within a sandboxed environment. Presently, the project exclusively encompasses the backend console functionality. The ultimate goal is to produce a comprehensive web application that seamlessly integrates database storage and front-end interfacing, mirroring the features of AirBnB.
 
-| Tasks | Files | Description |
-| ----- | ----- | ------ |
-| 0: Authors/README File | [AUTHORS](https://github.com/justinmajetich/AirBnB_clone/blob/dev/AUTHORS) | Project authors |
-| 1: Pep8 | N/A | All code is pep8 compliant|
-| 2: Unit Testing | [/tests](https://github.com/justinmajetich/AirBnB_clone/tree/dev/tests) | All class-defining modules are unittested |
-| 3. Make BaseModel | [/models/base_model.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/base_model.py) | Defines a parent class to be inherited by all model classes|
-| 4. Update BaseModel w/ kwargs | [/models/base_model.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/base_model.py) | Add functionality to recreate an instance of a class from a dictionary representation|
-| 5. Create FileStorage class | [/models/engine/file_storage.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/engine/file_storage.py) [/models/_ _init_ _.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/__init__.py) [/models/base_model.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/base_model.py) | Defines a class to manage persistent file storage system|
-| 6. Console 0.0.1 | [console.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/console.py) | Add basic functionality to console program, allowing it to quit, handle empty lines and ^D |
-| 7. Console 0.1 | [console.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/console.py) | Update the console with methods allowing the user to create, destroy, show, and update stored data |
-| 8. Create User class | [console.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/console.py) [/models/engine/file_storage.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/engine/file_storage.py) [/models/user.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/user.py) | Dynamically implements a user class |
-| 9. More Classes | [/models/user.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/user.py) [/models/place.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/place.py) [/models/city.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/city.py) [/models/amenity.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/amenity.py) [/models/state.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/state.py) [/models/review.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/review.py) | Dynamically implements more classes |
-| 10. Console 1.0 | [console.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/console.py) [/models/engine/file_storage.py](https://github.com/justinmajetich/AirBnB_clone/blob/dev/models/engine/file_storage.py) | Update the console and file storage system to work dynamically with all  classes update file storage |
-<br>
-<br>
-<center> <h2>General Use</h2> </center>
+Key Components and Features:
+
+Console/Command Interpreter:
+
+Implementation of a user-friendly CLI to facilitate the creation, modification, and deletion of objects within the AirBnB clone's data model.
+A sandboxed environment to ensure secure and controlled operations through the console.
+Data Model:
+
+Definition and structuring of the data model to accurately represent the entities and relationships in the AirBnB clone.
+Object-oriented design for efficient handling of data structures and relationships.
+Object Management:
+
+Comprehensive functionality for managing objects, including the ability to create, modify, and delete entities within the data model.
+Error handling and validation mechanisms to ensure data integrity and system stability.
+File Storage Conversion:
+
+Integration of mechanisms to convert the data model to a JSON file for persistent storage.
+Efficient serialization and deserialization processes to facilitate seamless interaction with the file storage.
+Programming Language:
+
+Utilization of Python for the development of the entire project, ensuring code readability, maintainability, and a robust development environment.
+
+Classes 🆑
+
+AirBnB utilizes the following classes:
+
+BaseModel   FileStorage User    State   City    Amenity Place   Review
+PUBLIC INSTANCE ATTRIBUTES  id
+created_at
+updated_at      Inherits from BaseModel Inherits from BaseModel Inherits from BaseModel Inherits from BaseModel Inherits from BaseModel Inherits from BaseModel
+PUBLIC INSTANCE METHODS save
+to_dict all
+new
+save
+reload  ""  ""  ""  ""  ""  ""
+PUBLIC INSTANCE METHODS         emailbrpassword
+first_name
+last_name   name    state_id
+name    name    city_id
+user_idbrname
+description
+number_bathrooms
+price_by_night
+latitude
+longitude
+amenity_ids place_id
+user_id
+text
+PRIVATE CLASS ATTRIBUTES        file_path
+objects             
+
+Storage 🛄
+
+The above classes are handled by the abstracted storage engine defined in the FileStorage class.
+
+Every time the backend is initialized, AirBnB instantiates an instance of FileStorage called Storage. The storage object is loaded/re-loaded from any class instances stored in the JSON file file.json. As class instances are created, updated, or deleted, the storage object is used to register corresponding chnages in the file.json.
+
+Console 💻
+
+The console is a command line interpreter that permits management of the backend of AirBnB. It can be used to handle and manipulate all classes utilized by the application (achieved by calls on the storage object defined above).
+
+Using the Console
+
+The AirBnB console can be run both interactively and non-interactively. To run the console in non-interactive mode, pipe any command(s) into an execution of the file console.py at the command line.
+
+$ echo "help" | ./console.py
+(hbnb) 
+Documented commands (type help <topic>):
+========================================
+EOF  all  count  create  destroy  help  quit  show  update
+
+(hbnb) 
+$
+Alternatively, to use the AirBnB console in interactive mode, run the file console.py by itself:
+
+$ ./console.py
+While running in interactive mode, the console displays a prompt for input:
+
+$ ./console.py
+(hbnb) 
+To quit the console, enter the command quit, or input an EOF signal (ctrl-D).
+
+$ ./console.py
+(hbnb) quit
+$
+$ ./console.py
+(hbnb) EOF
+$
+
 
 1. First clone this repository.
 
